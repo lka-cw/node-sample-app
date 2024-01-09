@@ -1,0 +1,16 @@
+spec:
+  template:
+    spec:
+      containers:
+        - readinessProbe:
+            httpGet:
+              path: /api/greeting
+              port: 3000
+              scheme: HTTP
+          livenessProbe:
+            httpGet:
+              path: /api/greeting
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 30
