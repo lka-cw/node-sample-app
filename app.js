@@ -27,8 +27,4 @@ app.use('/api/greeting', (req, res) => {
   res.send({ content: `Hello, ${name || 'World!'}` });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
-
 module.exports = app;
