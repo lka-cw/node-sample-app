@@ -1,0 +1,52 @@
+{
+  "name": "node-sample-app",
+  "version": "1.0.0",
+  "description": "Node Sample App",
+  "main": "./bin/www",
+  "scripts": {
+    "pretest": "eslint --ignore-path .gitignore .",
+    "test": "nyc --reporter=lcov mocha",
+    "prepare": "echo 'To confirm CVE compliance, run \"npm audit\"' ",
+    "release": "standard-version -a",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-18",
+    "openshift:enable:trace": "nodeshift --deploy.env NODE_OPTIONS='--require ./tracing.js' --dockerImage=registry.access.redhat.com/ubi8/nodejs-18",
+    "start": "node .",
+    "dev": "node . | npx pino-pretty",
+    "dev:debug": "DEBUG=* node . "
+  },
+  "engines": {
+    "node": "20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lka-cw/node-sample-app.git"
+  },
+  "files": [
+    "package.json",
+    "app.js",
+    "logger.js",
+    "tracing.js",
+    "public",
+    "bin"
+  ],
+  "author": "Lorenz Kaufmann",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "mocha": "^10.2.0",
+    "nodeshift": "^11.0.0",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.40.3",
+    "@opentelemetry/sdk-metrics": "^1.19.0",
+    "@opentelemetry/sdk-node": "^0.46.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "pino": "^8.17.2"
+  }
+}
