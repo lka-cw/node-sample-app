@@ -1,0 +1,5 @@
+spec:
+  port:
+    targetPort: 3000
+  to:
+    kind: Service
